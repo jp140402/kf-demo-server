@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env' });
 import express, { Router } from "express";
 import { urlencoded, json } from "body-parser";
 import axios from 'axios';
@@ -21,11 +23,11 @@ function queryData(queryType, updateValue, clientId){
   }
     var config = {
         method: 'post',
-        url: `https://data.mongodb-api.com/app/data-zlbbv/endpoint/data/v1/action/${queryType}`,
+        url: `https://data.mongodb-api.com/app/${process.env.APP_ID}/endpoint/data/v1/action/${queryType}`,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Request-Headers': '*',
-          'api-key': 'HHAHw1bYzq0ByAXqFnCaVbpX4VT9HVk0ZaH0UYpsFQERtL5qo2NNVSdJES7va21J',
+          'api-key': `${process.env.API_KEY}`,
         },
         data: data
     };
